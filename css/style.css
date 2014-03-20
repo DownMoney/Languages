@@ -1,0 +1,52 @@
+body { padding-top: 70px; }
+
+#localVideo{
+	width: 150px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	border: 1px solid #fff;
+}
+
+#remoteVideo{
+	width: 640px;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+}
+
+.middle-btn{
+	border-radius: 100px !important;
+	position: absolute !important;
+	z-index: 10;
+	left: 47px;
+}
+
+#controls{
+	width: 200px;
+	display: block;
+	margin: 0 auto;
+}
+
+#controls button{
+	font-size: 26px;
+}
+
+.card{
+	width: 250px;
+	border: 1px solid #000;
+	min-height: 300px;
+	border-radius: 10px;
+	float: right;
+	margin-right: 20px;
+}
+
+.image{
+	height: 150px !important;
+	background: url('http://img2.timeinc.net/people/i/2010/database/100531/ryan-gosling-300.jpg')  no-repeat center center fixed; 
+	overflow: none;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
