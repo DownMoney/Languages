@@ -1,0 +1,249 @@
+@font-face
+{
+font-family: 'HelveticaNeue';
+src: url('/fonts/HelveticaNeueLTPro-Th.otf');
+}
+
+@font-face
+{
+font-family: 'Buxton';
+src: url('/fonts/BuxtonSketch.ttf');
+}
+
+
+body { padding-top: 70px; }
+html,body{
+	background: #f8f8f8;
+	font-family: HelveticaNeue;
+	font-size: 16px;
+	min-width: 1100px;
+}
+
+.navbar-brand{
+	margin-top:5px;
+	font-size: 40px;
+	font-family: 'Buxton';
+}
+
+.navbar-brand:hover, #learn:hover{
+	text-shadow: 0 0 10px #16a085;
+	-webkit-transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	transition:all 0.5s ease-in-out;
+}
+
+#localVideo{
+	width: 150px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	border: 1px solid #fff;
+}
+
+#remoteVideo{
+	width: 640px;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	height: 480px;
+	border: 1px solid #bec2c4;
+	z-index: 999;
+}
+
+.middle-btn{
+	border-radius: 100px !important;
+	position: absolute !important;
+	z-index: 10;
+	left: 47px;
+}
+
+#controls{
+	width: 200px;
+	display: block;
+	margin: 0 auto;
+	margin-top:10px;
+}
+
+#controls button{
+	font-size: 26px;
+}
+
+#controls button span{
+	margin-top: 10px;
+}
+
+.card{
+	width: 200px;	
+	min-height: 400px;
+	
+	position:fixed;
+	right: 20px;
+	top: 120px;
+	text-align: center;
+	color: #344c60 ;
+
+}
+
+.card p{
+	padding-top: 7px;
+	font-size: 28px;
+}
+
+.card div div{
+	text-align: center;
+	width: 50%;
+}
+
+.card div div p{
+	font-size: 14px;
+}
+
+.card div{
+	padding-bottom: 10px;
+}
+
+#knows{
+	float: left;
+}
+
+#wants{
+	float: right;
+}
+
+.image{
+	
+	height: 200px !important;
+	width: 180px;
+	display:block;
+	margin: 0 auto;
+	margin-top: 10px;
+	background: url('/img/me.jpg') no-repeat;
+	-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+  	background-size: cover;
+  	
+
+}
+
+
+.shadow {
+   -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+}
+
+.flag{
+	width: 50px;
+	height: 50px;
+	display: block;
+	margin: 0 auto;
+	-webkit-background-size: cover !important;
+	-moz-background-size: cover !important;
+	-o-background-size: cover !important;
+  	background-size: cover !important;
+  	border-radius: 25px;
+  	border: 1px solid #428bca;
+}
+
+.english{
+	background: url('http://www.theflagshop.co.uk/ekmps/shops/speed/images/st-george-england-flag-659-p.jpg') no-repeat center center;
+
+}
+
+.spanish{
+	background: url('http://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/750px-Flag_of_Spain.svg.png') no-repeat center center;
+}
+
+.chat{
+	width: 200px;
+	height: 462px;
+	position: relative;
+	float:left;
+	margin-top:50px;
+	margin-left: 20px;
+}
+
+.chat input{
+	position: absolute;
+	bottom: 2px;
+	width: 100%;
+	background: none;
+	border:none;
+	color: #428bca;
+	border-top:1px solid #bec2c4;
+	padding: 5px 10px;
+}
+
+
+
+.navbar,.navbar-default, .navbar-brand{
+	background: rgba(255,255,255,0.9)!important;
+	color: #428bca !important;
+	border-color: #bec2c4 !important;
+	
+}
+
+.navbar{
+	border-bottom: 3px solid #bec2c4 !important;
+}
+
+a{
+	color: #428bca !important;
+}
+
+.people div:hover{
+	color:#428bca ;
+	cursor: pointer;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition: 0.5s;
+}
+
+
+
+.people div{
+	text-align: center;
+	width: 150px;
+	float: left;
+}
+
+.people img{
+	width: 100px;
+}
+
+.language{
+	clear:both;
+
+}
+.language hr{
+	border-color: #bec2c4;
+
+}
+
+.bootstrap-tagsinput{
+	width: 458px !important;
+}
+
+.panel{
+	border: 1px solid #ccc;
+}
+
+#learn{
+	display:block; margin:0 auto; width: 136px;  font-size: 36px;
+	padding: 0px !important;
+
+}
+
+#learn ul{ 
+	margin-top:5px;	 
+	padding: 0px !important;
+}
+
+#learn ul li a{
+	border:1px solid #16a085;
+	padding-bottom: 5px;
+	
+}

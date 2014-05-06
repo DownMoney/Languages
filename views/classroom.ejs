@@ -1,0 +1,63 @@
+<% layout('layout') -%>
+
+
+<div class="chat panel">
+  <div>
+  </div>
+  <input type="text" placeholder="Chat here..."/>
+</div>
+
+<div class="container">
+  
+  <div id="remoteVideo" class="panel">
+    <div>
+      <video id="localVideo"></video>
+    </div>
+  </div>
+  <div class="btn-group" id="controls">
+    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span>&nbsp;&nbsp;&nbsp;</button>
+    <button type="button" class="middle-btn btn btn-default"><span class="glyphicon glyphicon-stop"></span></button>
+    <button type="button" class="btn btn-default">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span></button>
+  </div>
+  
+</div>
+
+<div class="card panel">
+  <div class="image">    
+  </div>
+  <p>Michael Lotkowski</p>
+  <p><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span></p>
+  <div>
+    <div id="knows">
+      <p>Knows</p>
+      <div class="flag english"></div>
+    </div>
+    <div id="wants">
+      <p>Wants</p>
+      <span class="flag spanish"></span>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+var webrtc = new SimpleWebRTC({
+      // the id/element dom element that will hold "our" video
+      localVideoEl: 'localVideo',
+      // the id/element dom element that will hold remote videos
+      remoteVideosEl: 'remoteVideo',
+      // immediately ask for camera access
+      autoRequestMedia: true
+      });
+
+      // we have to wait until it's ready
+      webrtc.on('readyToCall', function () {
+        // you can name it anything
+        webrtc.joinRoom('test');
+      });
+
+
+function connect(roomID){
+ // webrtc.joinRoom(roomID);
+}
+  connect('test');
+</script>
