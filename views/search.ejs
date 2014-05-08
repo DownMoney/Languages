@@ -7,7 +7,7 @@
 		<hr/>
 		<div class="people">
 		<% for(var j=0; j<data[user.wants[i]].length; j++) {%>
-			<div onclick="call('<%=data[user.wants[i]][j].id%>', '<%=data[user.wants[i]][j].name%>', '<%=user.wants[i]%>');">
+			<div onclick="call('<%=data[user.wants[i]][j].id%>', '<%=user.wants[i]%>');">
 				<img src="<%=data[user.wants[i]][j].image%>"/>
 				<h4><%=data[user.wants[i]][j].name%></h4>
 				<p><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span></p>
@@ -23,7 +23,7 @@
 
 
 <script>
-function call(user, name, language) {
+function call(user, language) {
 	
 	$.getJSON('/api/user?id='+user, function(data){
 		console.log(data);
