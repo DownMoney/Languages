@@ -1,3 +1,4 @@
+var config = require('./config')
 var express = require('express');
 var app = express();
 var engine = require('ejs-locals')
@@ -42,11 +43,14 @@ var userSchema = mongoose.Schema({
         type: [String],
         required: true
     },
-    about: {type: String, required: false},
+    about: {
+        type: String,
+        required: false
+    },
     image: {
-      type: String,
-      required: false,
-      default: '/img/default.img'
+        type: String,
+        required: false,
+        default: '/img/default.img'
     }
 });
 
@@ -95,8 +99,14 @@ userSchema.pre('save', function(next) {
 var User = mongoose.model('User', userSchema);
 var Class = mongoose.model('Class', classSchema);
 
-User.update({_id: "536a3d87360c34b5264ef939"}, {$set:{image: '/img/bob.jpg'}}, function(err, data){
-  console.log(err);
+User.update({
+    _id: "536a3d87360c34b5264ef939"
+}, {
+    $set: {
+        image: '/img/bob.jpg'
+    }
+}, function(err, data) {
+    console.log(err);
 });
 /*var user = new User({ username: 'bob', email: 'bob@example.com', password: 'secret' });
 user.save(function(err) {
@@ -196,11 +206,13 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
     if (req.isAuthenticated())
         res.render('dashboard', {
-            user: req.user
+            user: req.user,
+            config: config
         });
     else
         res.render('welcome', {
-            user: req.user
+            user: req.user,
+            config: config
         });
 });
 
@@ -210,7 +222,8 @@ app.get('/classroom/:classID', ensureAuthenticated, function(req, res) {
     }, function(err, data) {
         res.render('classroom', {
             user: req.user,
-            classInfo: data
+            classInfo: data,
+            config: config
         });
     });
 
@@ -224,13 +237,15 @@ app.get('/search', ensureAuthenticated, function(req, res) {
         if (err != null)
             res.render('search', {
                 data: err,
-                user: req.user
+                user: req.user,
+                config: config
             });
         else {
             var temp = combine(data, req.user);
             res.render('search', {
                 data: temp,
-                user: req.user
+                user: req.user,
+                config: config
             });
         }
     });
@@ -247,7 +262,8 @@ app.post('/search', function(req, res) {
 
 app.get('/register', function(req, res) {
     res.render('register', {
-        user: req.user
+        user: req.user,
+        config: config
     });
 });
 
@@ -264,13 +280,15 @@ app.post('/register', function(req, res) {
             console.log(err);
         } else {
             console.log('user: ' + user.email + " saved.");
+            res.redirect('/');
         }
     });
 });
 
 app.get('/login', function(req, res) {
     res.render('login', {
-        user: req.user
+        user: req.user,
+        config: config
     });
 });
 
@@ -301,13 +319,15 @@ app.get('/logout', function(req, res) {
 });
 
 
-app.get('/api/user', function(req, res){
-  User.findOne({_id:req.param('id')}, function(err, data){
-    res.json(data);
-  });
+app.get('/api/user', function(req, res) {
+    User.findOne({
+        _id: req.param('id')
+    }, function(err, data) {
+        res.json(data);
+    });
 });
 
-var server = app.listen(3000, function() {
+var server = app.listen(config.port, function() {
     console.log('Listening on port %d', server.address().port);
 })
 
@@ -361,7 +381,9 @@ io.sockets.on('connection', function(socket) {
         });
     });
 
-    socket.on('send', function(data){
-      clients[data.user].emit('send', {text: data.text});
+    socket.on('send', function(data) {
+        clients[data.user].emit('send', {
+            text: data.text
+        });
     });
 });
