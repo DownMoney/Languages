@@ -99,7 +99,7 @@ userSchema.pre('save', function(next) {
 var User = mongoose.model('User', userSchema);
 var Class = mongoose.model('Class', classSchema);
 
-User.update({
+/*User.update({
     _id: "536a3d87360c34b5264ef939"
 }, {
     $set: {
@@ -107,7 +107,7 @@ User.update({
     }
 }, function(err, data) {
     console.log(err);
-});
+});*/
 /*var user = new User({ username: 'bob', email: 'bob@example.com', password: 'secret' });
 user.save(function(err) {
   if(err) {
