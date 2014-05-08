@@ -181,9 +181,11 @@ function combine(data, user) {
     for (var i = 0; i < data.length; i++) {
         var lang = which(data[i].knows, user['wants']);
         if (lang in temp)
-            temp[lang] += [data[i]];
-        else
-            temp[lang] = [data[i]];
+            temp[lang].push(data[i]);
+        else {
+            temp[lang] = [];
+            temp[lang].push(data[i]);
+        }
     };
 
     return temp;
