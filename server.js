@@ -231,7 +231,9 @@ app.get('/classroom/:classID', ensureAuthenticated, function(req, res) {
 
 app.get('/search', ensureAuthenticated, function(req, res) {
     User.find({
-        knows: req.user.wants
+        knows: {
+            $in: req.user.wants
+        }
     }, function(err, data) {
 
         if (err != null)
