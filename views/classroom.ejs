@@ -1,10 +1,10 @@
 <% layout('layout') -%>
 
-
 <div class="chat panel">
-  <div>
+  <div id="messages">
+   
   </div>
-  <input type="text" placeholder="Chat here..."/>
+  <input type="text" onkeyup="if (event.keyCode == 13) send(this);" placeholder="Chat here..."/>
 </div>
 
 <div class="container">
@@ -50,14 +50,29 @@ var webrtc = new SimpleWebRTC({
       });
 
       // we have to wait until it's ready
-      webrtc.on('readyToCall', function () {
-        // you can name it anything
-        webrtc.joinRoom('test');
+      webrtc.on('readyToCall', function () {        
+       webrtc.joinRoom('<%= classInfo._id %>');
       });
 
+<% if (user._id == classInfo.user1) { %>
+  var recipient = '<%= classInfo.user2 %>';
+<% } else { %>
+ var recipient = '<%= classInfo.user1 %>';
+ <% } %>
 
-function connect(roomID){
- // webrtc.joinRoom(roomID);
+
+function send(text){
+  $('#messages').append('<div class="me panel">'+$(text).val()+'</div>');
+  socket.emit('send', {text: $(text).val(), user: recipient});
+  $(text).val('');
+  var objDiv = document.getElementById("messages");
+  objDiv.scrollTop = objDiv.scrollHeight;
 }
-  connect('test');
+
+socket.on('send', function(data){
+  $('#messages').append('<div class="them panel">'+data.text+'</div>');
+  var objDiv = document.getElementById("messages");
+  objDiv.scrollTop = objDiv.scrollHeight;
+});
+
 </script>

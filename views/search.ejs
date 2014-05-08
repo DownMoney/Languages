@@ -1,42 +1,57 @@
 <% layout('layout') -%>
 <div class="container">
-	<div class="language">
-		<h2>Spanish</h2>
+<% for(var i=0; i<user.wants.length; i++) {%>
+<% if(user.wants[i] in data) { %>
+	<div class="language" id="<%=user.wants[i]%>">
+		<h2><%=user.wants[i]%></h2>
 		<hr/>
 		<div class="people">
-			<div>
-				<img src="/img/me.jpg"/>
-				<h4>Michael</h4>
+		<% for(var j=0; j<data[user.wants[i]].length; j++) {%>
+			<div onclick="call('<%=data[user.wants[i]][j].id%>', '<%=data[user.wants[i]][j].name%>', '<%=user.wants[i]%>');">
+				<img src="<%=data[user.wants[i]][j].image%>"/>
+				<h4><%=data[user.wants[i]][j].name%></h4>
 				<p><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span></p>
 			</div>
-
-			<div>
-				<img src="/img/me.jpg"/>
-				<h4>Michael</h4>
-				<p><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span></p>
-			</div>
+		<% } %>		
 		</div>
+		<% } %>
 	</div>
-<div class="alert alert-info" style="clear:both">
-  		Are you sure you want to call Michael? <a href="#" class="alert-link">Yes</a> <a href="#" class="alert-link">No</a>
-	</div>
-	<div class="language">
-		<h2>German</h2>
-		<hr/>
-		<div class="people">
-			<div>
-				<img src="/img/me.jpg"/>
-				<h4>Michael</h4>
-				<p><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span></p>
-			</div>
-
-			<div>
-				<img src="/img/me.jpg"/>
-				<h4>Michael</h4>
-				<p><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span><span class="glyphicon glyphicon glyphicon-star"></span></p>
-			</div>
-		</div>
-	</div>
-
-	
+<% } %>	
 </div>
+
+
+
+
+<script>
+function call(user, name, language) {
+	
+	$.getJSON('/api/user?id='+user, function(data){
+		console.log(data);
+		$('#firstName').html(data['name']);
+		$('#fullName').html(data['name'] + ' '+data['surname']);
+		$('#about').html(data['about']);
+		document.getElementById("image").src=data['image'];
+		var temp = ["<h2>Knows</h2>"];
+		for (var i = 0; i < data['knows'].length; i++) {
+			temp.push('<p>'+data['knows'][i]+'</p>');
+		};
+		$('#left').html(temp.join(''));
+
+		temp = ["<h2>Wants</h2>"];
+		for (var i = 0; i < data['wants'].length; i++) {
+			temp.push('<p>'+data['wants'][i]+'</p>');
+		};
+		$('#right').html(temp.join(''));
+		$('#call').click(function(){
+			beginCall(user, language);
+		});
+		$('#profile').modal('show');
+	});
+	
+}
+
+
+function beginCall(user, language){
+	socket.emit('beginCall', {from: '<%=user.id%>', user: user, lang: language});
+}
+</script>

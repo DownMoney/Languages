@@ -159,12 +159,16 @@ html,body{
 .chat{
 	width: 200px;
 	height: 462px;
+	
 	position: relative;
 	float:left;
 	margin-top:50px;
 	margin-left: 20px;
 }
-
+#messages{
+	height: 420px;
+	overflow-x:auto;
+}
 .chat input{
 	position: absolute;
 	bottom: 2px;
@@ -246,4 +250,65 @@ a{
 	border:1px solid #16a085;
 	padding-bottom: 5px;
 	
+}
+
+.me{
+	width: 80%;
+	float: right;
+	background: #1AD6FD;
+	padding: 3px 5px;
+	margin: 3px;
+}
+
+.them{
+	width: 80%;
+	float: left;
+	
+	padding: 3px 5px;
+	margin: 3px;
+}
+
+.profile{
+	text-align:center;
+	max-height: 600px !important;
+	overflow-y: auto;
+}
+
+.profile img{
+	border-radius: 200px;
+	width:150px;
+	height: 150px;
+}
+
+.profile ul{
+	text-align: left;
+	list-style: none;
+	margin-left: 240px;
+}
+
+.profile ul li{
+	border-left: 3px solid #428bca;
+	padding:20px;
+	;
+}
+
+.profile ul li div{
+	position: relative;
+	font-size: 18px;
+}
+
+.circle{
+	width:20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #fff;
+	display: block;
+	border: 3px solid #428bca;
+	position:absolute;
+	left: -31px;
+}
+
+.date{
+	position:absolute;
+	left: -150px;
 }
