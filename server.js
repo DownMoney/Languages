@@ -243,7 +243,9 @@ app.get('/search', ensureAuthenticated, function(req, res) {
                 config: config
             });
         else {
+            console.log(data);
             var temp = combine(data, req.user);
+            console.log(temp);
             res.render('search', {
                 data: temp,
                 user: req.user,
